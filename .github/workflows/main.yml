@@ -3,7 +3,7 @@ name: Deploy Application
 on:
   push:
     branches:
-      - rel  # Replace with your branch name
+      - rel  # Replace with your branch name if different
 
 jobs:
   deploy:
@@ -31,10 +31,10 @@ jobs:
         run: |
           echo "$SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
-          rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" ./ propert4@198.251.84.236:/path/to/deployment/directory/
+          rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" ./ propert4@198.251.84.236:/home/propert4/public_html/
           ssh -i private_key -o StrictHostKeyChecking=no propert4@198.251.84.236 << 'EOF'
-            cd /path/to/deployment/directory
+            cd /home/propert4/public_html/
             source venv/bin/activate
             pip install -r requirements.txt
-            sudo systemctl restart apache2  # Or `sudo systemctl restart nginx` if using Nginx
+            sudo systemctl restart apache2  # Adjust based on your web server
           EOF
