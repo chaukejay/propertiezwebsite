@@ -27,12 +27,12 @@ jobs:
 
       - name: Deploy to DirectAdmin
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIV_KEY }}
         run: |
           echo "$SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
-          rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" ./ deployer@propertiez.co.za:/path/to/deployment/directory/
-          ssh -i private_key -o StrictHostKeyChecking=no deployer@propertiez.co.za << 'EOF'
+          rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" ./ propert4@198.251.84.236:/path/to/deployment/directory/
+          ssh -i private_key -o StrictHostKeyChecking=no propert4@198.251.84.236 << 'EOF'
             cd /path/to/deployment/directory
             source venv/bin/activate
             pip install -r requirements.txt
