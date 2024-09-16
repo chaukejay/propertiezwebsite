@@ -1,0 +1,33 @@
+/* This CSS file defines a palette of colours to be used across the application.
+    These colour variables are set on the :root pseudo-class, making them
+    accessible throughout the entire document. The colours are organized into
+    general colours and message-specific colours for easy reference and consistent
+    styling.
+*/
+
+:root {
+    /* Colours */
+    --green: #97a91d;
+    --dark-green: #616d13;
+    --orange: #F8963F;
+    --white: #ffffff;
+    --off-white: #ffffffcc;
+    --light-gray: #c6c5c5db;
+    --black: #000000;
+    --transparent-black: rgba(0, 0, 0, 0.196);
+    --transparent-white: rgba(255, 255, 255, 0.322);
+    --translucent-white: rgba(255, 255, 255, 0.788);
+    --half-opaque-black: rgba(0, 0, 0, 0.5);
+
+    /* Message colours */
+    --debug-purple-bg: #f3e5f5;
+    --debug-purple: #9c27b0;
+    --info-blue-bg: #e3f2fd;
+    --info-blue: #2196f3;
+    --success-green-bg: #e8f5e9;
+    --success-green: #4caf50;
+    --warning-orange-bg: #fff3e0; 
+    --warning-orange: #ff9800;
+    --error-red-bg: #ffebee;
+    --error-red: #f44336;
+}

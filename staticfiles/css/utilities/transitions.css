@@ -1,0 +1,24 @@
+/* This CSS file defines custom transition effects using CSS variables.
+    These variables, defined on the :root pseudo-class, allow consistent and 
+    adjustable transition effects throughout the application. They are designed 
+    to control the timing and behavior of transitions for various CSS
+    properties, enhancing user experience and interface dynamics.
+ */
+
+:root {
+    /* Defines a smooth transition effect for all properties.
+
+    - Properties: all
+        Specifies that the transition will apply to all CSS properties that
+        change.
+
+    - Duration: 0.8s
+        The transition will take 0.8 seconds to complete.
+
+    - Timing Function: cubic-bezier(.25, .8, .25, 1)
+        Uses a cubic-bezier curve to control the transition speed over time.
+        This particular curve starts slowly, accelerates, and then slows down 
+        towards the end, creating a smooth and natural transition effect.
+    */
+    --transition-smooth: all 0.8s cubic-bezier(.25, .8, .25, 1);
+}

@@ -1,0 +1,188 @@
+.search-listings-form {
+
+    & .main-filters {
+        display: flex;
+
+        & .form-field {
+            flex-grow: 1;
+            margin: .2em;
+        }
+
+        & .form-button {
+            min-width: min-content;
+            margin: .2em;
+        }
+    }
+
+    & details {
+
+        & .more-filters {
+            display: flex;
+            flex-wrap: wrap;
+
+            & .form-field {
+                flex-grow: 1;
+                width: fit-content;
+                min-width: fit-content;
+                box-sizing: border-box;
+            }
+        }
+
+        & .form-field {
+            box-sizing: border-box;
+            width: 99.5%;
+
+            & .checkboxes {
+                display: flex;
+                flex-wrap: wrap;
+
+                & .checkbox {
+                    display: flex;
+                    padding: .4em .6em;
+                }
+            }
+        }
+    }
+}
+
+.search-listings-results {
+    
+    & .listing-link {
+        text-decoration: none;
+        color: var(--black);
+
+        & .listing {
+            background-color: var(--light-gray);
+            display: flex;
+            flex-direction: row;
+            border-radius:  var(--border-radius);
+            margin-bottom: 20px;
+            position: relative;
+    
+            & .agency-image {
+                position: absolute;
+                top: 1em;
+                right: 1em;
+                max-width: 100px;
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16 / 9;
+                object-fit: cover;
+            }
+
+            & .listing-images { 
+                width: 40%; /* image takes up 40% of the horizontal space */
+                height: 300px;
+    
+                & .listing-main-image {
+                    width: 100%;
+                    border-top-left-radius: var(--border-radius);
+                    border-bottom-left-radius: var(--border-radius);
+                    height: 300px;
+                    object-fit: cover;
+                }
+            }
+    
+            & .listing-info {
+                width: 60%; /* info takes up 60% of the horizontal space */
+                padding: 1em;
+    
+                & .listing-price {
+                    margin: 0;
+                    margin-top: 0.5em;
+                }
+            }
+        }
+    }
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pagination .step-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination .step-links a,
+.pagination .step-links span {
+    color: var(--white);
+    background-color: var(--green);
+    border: 2px solid var(--green);
+    padding: 8px 12px;
+    text-decoration: none;
+    margin: 0 2px;
+    border-radius: var(--border-radius);
+}
+
+.pagination .step-links a:hover {
+    background-color: var(--dark-green);
+}
+
+.pagination .step-links .current {
+    font-weight: bold;
+    color: var(--green);
+    background-color: var(--white);
+    border-color: var(--green);
+}
+
+@media screen and (max-width:1000px) {
+
+    .search-listings-form .main-filters .form-button {
+        padding: 10px 5px
+    }
+
+    .search-listings-results {
+        & .listing-link {
+            & .listing {
+                flex-direction: column;
+
+                & .agency-image {
+                    top: calc(300px + 1em);
+                }
+    
+                & .listing-images {
+                    width: 100%;
+    
+                    & .listing-main-image {
+                        border-top-left-radius: var(--border-radius);
+                        border-top-right-radius: var(--border-radius);
+                        border-bottom-left-radius: 0;
+                    }
+                }
+    
+                & .listing-info {
+                    width: 95%; /* info takes up 95% of the horizontal space */
+                }
+            }
+        }
+        
+    }
+}
+
+@media screen and (max-width:500px) {
+    .pagination .step-links a,
+    .pagination .step-links span {
+        padding: 8px 2px;
+    }
+
+    .search-listings-form .main-filters .form-field,
+    .search-listings-form .main-filters .form-button {
+        margin: .2em .05em;
+        width: 70px;
+        min-width: 20%;
+        max-width: 25%;
+    }
+
+    .search-listings-form .main-filters .form-field .form-input {
+        font-size: small;
+    }
+
+    .search-listings-form .main-filters .form-button {
+        padding: 10px 5px
+    }
+}

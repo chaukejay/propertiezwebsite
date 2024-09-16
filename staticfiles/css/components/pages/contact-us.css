@@ -1,0 +1,32 @@
+.contact-info {
+    a {
+        text-decoration: none;
+        color: var(--green);
+    }
+    
+    a:hover {
+        text-decoration: underline;
+        color: var(--dark-green);
+    }
+}
+
+.social-media {
+    & a {
+        color: var(--black);
+    }
+
+    & a:hover {
+        text-decoration: none;
+        color: var(--green);
+    }
+}
+
+.contact-form {
+    form {
+        .form-field {
+            textarea {
+                width: 98%;
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+<div class="contact-form">
+    <h2>Contact Us</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-field">
+            <label for="name" class="form-label">Full Name:</label>
+            <input class="form-input" type="text" name="name" id="id_name" required>
+        </div>
+        <div class="form-field">
+            <label for="email" class="form-label">Email:</label>
+            <input class="form-input" type="email" name="email" id="id_email" required>
+        </div>
+        <div class="form-field">
+            <label for="subject" class="form-label">Subject:</label>
+            <input class="form-input" type="text" name="subject" id="id_subject" required>
+        </div>
+        <div class="form-field">
+            <label for="" class="form-label">Message:</label>
+            <textarea class="form-input" name="message" id="id_message" required></textarea>
+        </div>
+        <input type="submit" value="Send Message" class="form-button">
+    </form>
+</div>

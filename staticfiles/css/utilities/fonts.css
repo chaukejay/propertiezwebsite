@@ -1,0 +1,15 @@
+
+:root {
+    /* Defines the preferred font family for text content.
+    - Value: Verdana, Geneva, Tahoma, sans-serif
+        Specifies a prioritized list of font families to use, ensuring 
+        compatibility and fallback options for different operating systems and
+        devices.
+    */
+    --font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.dark-green-centered {
+    color: var(--dark-green);
+    text-align: center;
+}

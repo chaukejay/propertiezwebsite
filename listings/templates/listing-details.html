@@ -1,0 +1,198 @@
+<!-- 
+Listing Detail Page:
+
+Displaying detailed information about a specific property listing, including
+its title, description, images, price, location, features, amenities, and
+contact information for inquiries.
+-->
+
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}
+Listing Details
+{% endblock %}
+
+{% block og-type %}website{% endblock %}
+{% block og-title %}{{ listing }}{% endblock %}
+{% block og-image %}{{ listing.main_image.url }}{% endblock %}
+{% block og-description %}
+    {% if listing.description|length > 150 %}
+        {{ listing.description|slice:":150" }}...
+    {% else %}
+        {{ listing.description }}
+    {% endif %}
+{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="listing-details-page">
+    <div class="listing">
+
+        <!-- LISTING IMAGES -->
+        <div class="listing-images">
+            <!-- Main Image -->
+            {% if listing.main_image %}
+                <img class="main-image" src="{{ listing.main_image.url }}" alt="Main Image">
+            {% endif %}
+            <!-- Additional Images -->
+            {% for listing_image in listing_images %}
+                {% if listing_image.image %}
+                    <img src="{{ listing_image.image.url }}" alt = "Listing Image">
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- LISTING DETAILS -->
+        <div class="listing-details">
+            <div class="price-and-details">
+                <!-- Price -->
+                <h1>R{{listing.price|floatformat|intcomma}} {% if listing.listing_type == "To Let" %} /&nbsp;month {% endif %}</h1>
+                <p>
+                    <!-- Floor Area -->
+                    {% if listing.floor_size %}
+                        {{ listing.floor_size|floatformat }}
+                        <!-- if sqm -->
+                        {% if listing.floor_size_measurement_type == "Square Metres" %}
+                            m<sup>2</sup>
+                        <!-- if sqft -->
+                        {% elif listing.floor_size_measurement_type == "Square Feet"  %}
+                            ft<sup>2</sup>
+                        {% endif %}
+                    {% endif %}
+                    <!-- Bedrooms -->
+                    {% if listing.bedrooms %}
+                        {{ listing.bedrooms|floatformat }}&nbsp;
+                        <svg class="icon-small" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M32 32c17.7 0 32 14.3 32 32V320H288V160c0-17.7 14.3-32 32-32H544c53 0 96 43 96 96V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V416H352 320 64v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V64C0 46.3 14.3 32 32 32zm144 96a80 80 0 1 1 0 160 80 80 0 1 1 0-160z"/></svg>
+                    {% endif%}
+                    <!-- Bathrooms -->
+                    {% if listing.bathrooms %}
+                        {{ listing.bathrooms|floatformat }}&nbsp;
+                        <svg class="icon-small" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M96 77.3c0-7.3 5.9-13.3 13.3-13.3c3.5 0 6.9 1.4 9.4 3.9l14.9 14.9C130 91.8 128 101.7 128 112c0 19.9 7.2 38 19.2 52c-5.3 9.2-4 21.1 3.8 29c9.4 9.4 24.6 9.4 33.9 0L289 89c9.4-9.4 9.4-24.6 0-33.9c-7.9-7.9-19.8-9.1-29-3.8C246 39.2 227.9 32 208 32c-10.3 0-20.2 2-29.2 5.5L163.9 22.6C149.4 8.1 129.7 0 109.3 0C66.6 0 32 34.6 32 77.3V256c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H96V77.3zM32 352v16c0 28.4 12.4 54 32 71.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32V464H384v16c0 17.7 14.3 32 32 32s32-14.3 32-32V439.6c19.6-17.6 32-43.1 32-71.6V352H32z"/></svg>
+                    {% endif%}
+                </p>
+            </div>
+
+            <!-- Title -->
+            <h2>
+                <!-- Bedrooms -->
+                {% if listing.bedrooms %}
+                    {{listing.bedrooms|floatformat}} Bedroom 
+                {% endif %}
+                <!-- Property Type -->
+                {{listing.property_type}}
+                {{listing.listing_type}}
+                <!-- Suburb -->
+                {% if listing.suburb and listing.suburb != "" %} 
+                    in {{ listing.suburb }}
+                <!-- Area -->
+                {% elif listing.area and listing.area != "" %}
+                    in {{ listing.area }}
+                <!-- City -->
+                {% elif listing.city and listing.city != "" %}
+                    in {{ listing.city }}
+                <!-- Province -->
+                {% elif listing.province and listing.province != "" %}
+                    in {{ listing.province }}
+                {% endif %}
+            </h2>    
+
+            <!-- Description -->
+            <p>{{listing.description}}</p>
+    
+            <!-- Location Details -->
+            <!-- Street address -->
+            {% if listing.publish_street_address %}
+            <p><strong>Street Address:</strong> {{listing.street_number}} {{listing.street_name}}</p>
+            {% endif %}
+            <!-- Location -->
+            <p><strong>Location:</strong>
+                <!-- Suburb -->
+                {% if listing.suburb %}
+                    {{ listing.suburb}},
+                {% endif %}
+                <!-- Area -->
+                {% if listing.area %}
+                    {{ listing.area }},
+                {% endif %}
+                <!-- City -->
+                {% if listing.city %}
+                    {{ listing.city }},
+                {% endif %}
+                <!-- Province -->
+                {{listing.province}}
+            </p>
+            <!-- Floor area -->
+            {% if listing.foor_size %}
+                <p><strong>Floor area:</strong> {{listing.floor_size|floatformat}} {{listing.floor_size_measurement_type}}</p>
+            {% endif %}
+            <!-- Land area -->
+            {% if listing.land_size %}
+                <p><strong>Land area:</strong> {{listing.land_size|floatformat}} {{listing.land_size_measurement_type}}</p>
+            {% endif %}
+            <br>
+            
+            <!-- Room Details -->
+            <!-- Studies -->
+            {% if listing.studies %}
+            <p><strong>Studies:</strong> {{listing.studies|floatformat}}</p>
+            {% endif%}
+            <!-- Lounges -->
+            {% if listing.lounges %}
+            <p><strong>Lounges:</strong> {{listing.lounges|floatformat}}</p>
+            {% endif%}
+            <!-- Dining -->
+            {% if listing.dining_rooms %}
+            <p><strong>Dining Rooms:</strong> {{listing.dining_rooms|floatformat}}</p>
+            {% endif%}
+            <!-- Garages -->
+            {% if listing.garages %}
+            <p><strong>Garages:</strong> {{listing.garages|floatformat}}</p>
+            {% endif%}
+            <!-- Carports -->
+            {% if listing.carports %}
+            <p><strong>Carports:</strong> {{listing.carports|floatformat}}</p>
+            {% endif%}
+            <br>
+    
+            <!-- Date added -->
+            <p><strong>Listed since:</strong> {{listing.created|naturaltime}}</p>
+            <!-- Date Edited -->
+            <p><strong>Last Update:</strong> {{listing.modified|naturaltime}}</p>
+            <br>
+
+        </div>
+    </div>
+    <div class="sidebar">
+        <!-- Agent -->
+        {% if listing.agent.publish_agent %}
+        <div class="border-green-rounded">
+            <h3>Agent</h3>
+            <!-- Agent Image -->
+            <div class="agent-details">
+                {% if listing.agent.image %}
+                <img class="image-circle" src="{{ listing.agent.image.url }}" alt="{{ listing.agent }} image">
+                {% endif %}
+                <!-- Agent Name -- Agency Name, Branch -->
+                <p>{{ listing.agent }} &mdash; {{ listing.agent.agency }}</p>
+            </div>
+        </div>
+        {% endif %}
+        {% block enquiry-form %}
+            {% include 'enquiry-form.html' %}
+        {% endblock %}
+        {% block get-prequalified %}
+            {% include 'get-prequalified.html' %}
+        {% endblock %}
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

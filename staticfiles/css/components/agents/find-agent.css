@@ -1,0 +1,10 @@
+.agents {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+}

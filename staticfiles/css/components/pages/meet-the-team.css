@@ -1,0 +1,52 @@
+.mtt-title{
+    text-align: center;
+}
+
+.team-member {
+    display: flex; /* Use flexbox layout */
+    background-color: #fff;
+    align-items: center; /* Vertically center the items */
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px var(--transparent-black);
+}
+
+.team-member img {
+    width: auto; /* Set the width of the image to 50% */
+    height: auto;
+    max-width: 300px; /* Limit the maximum width of the image to 200px */
+    max-height: 300px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    margin-right: 20px; /* Add some spacing between the image and the content */
+}
+
+.team-member .bio-content {
+    flex-grow: 1; /* Allow the content to grow and fill the remaining space */
+}
+
+.team-member h2 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.team-member .bio {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Media query for smaller devices */
+@media screen and (max-width: 1000px) {
+    /* Meet the team */
+    .team-member {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+
+    .team-member img {
+        margin-right: 0; /* Remove margin between image and content on smaller screens */
+        margin-bottom: 20px; /* Add margin below image on smaller screens */
+    }
+}

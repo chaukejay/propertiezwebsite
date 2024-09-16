@@ -1,0 +1,29 @@
+<!--
+Logout Page:
+
+A page confirming that the user has been successfully logged out of their
+account and providing options for returning to the home page or logging in
+again.
+-->
+
+{% extends 'base.html' %}
+
+{% block title %}
+Log Out
+{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+<!-- {% if request.user.is_authenticated %}
+    <p>Logout failed</p>
+{% else %}
+    <p>Logout successful</p>
+{% endif %} -->
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+List your property
+{% endblock %}
+
+{% block og-title %}List your property{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+<h1 class="dark-green-centered">Property Listing Form</h1>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <h3>Property Details</h3>
+    <div class="form-field">
+        <label for="title" class="form-label">Property Title</label>
+        <input class="form-input" type="text" name="title" id="id_title" required>
+    </div>
+    <div class="form-field">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-input" name="description" id="id_description" required></textarea>
+    </div>
+    <div class="form-field">
+        <label for="price" class="form-label">Price</label>
+        <input class="form-input" type="number" name="price" id="id_price" required>
+    </div>
+    <div class="form-field">
+        <label for="location" class="form-label">Location</label>
+        <input class="form-input" type="text" name="location" id="id_location" required>
+    </div>
+    <h3>Owner Details</h3>
+    <div class="form-field">
+        <label for="name" class="form-label">Full Name</label>
+        <input class="form-input" type="text" name="name" id="id_name" required>
+    </div>
+    <div class="form-field">
+        <label for="email" class="form-label">Email Address</label>
+        <input class="form-input" type="email" name="email" id="id_email" required>
+    </div>
+    <div class="form-field">
+        <label for="contact" class="form-label">Contact Number</label>
+        <input class="form-input" type="tel" name="contact" id="id_contact" required>
+    </div>
+    {% csrf_token %}
+    <input type="submit" value="Submit" class="form-button">
+</form>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

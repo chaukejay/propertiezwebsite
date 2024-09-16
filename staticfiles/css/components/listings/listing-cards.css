@@ -1,0 +1,33 @@
+.listing-card {
+    flex: 0 0 auto;
+    width: 300px; /* Adjust card width as needed */
+    margin-right: 20px;
+    scroll-snap-align: start;
+    border-radius: 5px;
+    background-color: var(--light-gray);
+}
+
+.listing-card img {
+    width: 100%;
+    height: 200px; /* Adjust image height as needed */
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.listing-card .listing-details {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 0px;
+}
+
+.listing-card .listing-details h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    margin-top: 0px;
+}
+
+.listing-card .listing-details p {
+    margin-bottom: 5px;
+    margin-top: 1px;
+    word-wrap: normal;
+}

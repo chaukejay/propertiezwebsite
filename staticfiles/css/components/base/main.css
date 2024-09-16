@@ -1,0 +1,13 @@
+.main-container {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 1em 4em 2em;
+    font-family: var(--font-family);
+}
+
+/* Media query for smaller devices */
+@media screen and (max-width: 1000px) {
+    .main-container {
+        padding: 1em 1em 2em;
+    }
+}

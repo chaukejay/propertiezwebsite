@@ -1,0 +1,67 @@
+<!--
+Listing Enquiry Form:
+
+An HTML form page where users can submit enquiries or requests for more
+information about a specific property listing.
+
+This page would include fields for the user to input their name, email, phone
+number, message, and possibly the listing they're interested in.
+-->
+
+<div class="enquiry-form">
+    <h3>Contact Agent</h3>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- Enquiry Details -->
+        <div class="enquiry-form-field">
+            <label class="enquiry-form-label" for="full_name">Full Name<span style="color: red;">*</span></label>
+            {{ form.full_name }} 
+        </div>
+        <div class="enquiry-form-field">
+            <label class="enquiry-form-label" for="email">Email<span style="color: red;">*</span></label>
+            {{ form.email }} 
+        </div>
+        <div class="enquiry-form-field">
+            <label class="enquiry-form-label" for="cell_number">Contact Number</label>
+            {{ form.cell_number }} 
+        </div>
+
+        <div class="enquiry-form-field">
+            <label class="enquiry-form-label" for="message">Message</label>
+            <br>
+            {{ form.message }} 
+        </div>
+        <div class="enquiry-form-checkbox">
+            <input type="checkbox" name="is_prequalified" id="is_prequalified">
+            <label class="enquiry-form-checkbox-label" for="is_prequalified">
+                I have pre-qualified for a home loan
+            </label>
+        </div>
+        <p><strong>I consent to:</strong></p>
+        <div class="enquiry-form-checkbox">
+            <input type="checkbox" name="add_to_mailing_list" id="add_to_mailing_list">
+            <label class="enquiry-form-checkbox-label" for="add_to_mailing_list">
+                Receiving marketing information from Propertiez.co.za
+            </label>
+        </div>
+        <div class="enquiry-form-checkbox">
+            <input type="checkbox" name="consent_information" id="consent_information" required><span style="color: red;">*</span>
+            <label class="enquiry-form-checkbox-label" for="consent_information">
+                Sharing my details with Propertiez.co.za, the Listing Agent, and third-party property directories
+            </label>
+        </div>
+        <div class="enquiry-form-checkbox">
+            <input type="checkbox" name="consent_messages" id="consent_messages" required><span style="color: red;">*</span>
+            <label class="enquiry-form-checkbox-label" for="consent_messages">
+                Email communication regarding this listing
+            </label>
+        </div>
+        <div class="enquiry-form-checkbox">
+            <input type="checkbox" name="consent_calls" id="consent_calls">
+            <label class="enquiry-form-checkbox-label" for="consent_calls">
+                Telephonic communication regarding this listing
+            </label>
+        </div>
+        <input type="submit" value="Send Enquiry">
+    </form>
+</div>

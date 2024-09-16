@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Propertiez - Index
+{% endblock %}
+
+{% block og-title %}Index{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+<nav>
+    <ul>
+        <li><a href="#section1">Home</a></li>
+        <li><a href="#section2">User</a></li>
+        <!-- <li><a href="#section3">Agent</a></li> -->
+        <li><a href="#section4">Listings</a></li>
+        <!-- Add more sections as needed -->
+    </ul>
+</nav>
+
+<!-- LINK FORMAT -->
+<!-- <li><a href="{% url 'error' %}">LinkText</a></li> -->
+
+
+<section id="section1">
+    <h2>Home</h2>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About Us</a></li>
+        <li><a href="{% url 'calculators' %}">Calculators</a></li>
+        <li><a href="{% url 'contact-us' %}">Contact Us</a></li>
+        <li><a href="{% url 'error' %}">Error</a></li>
+        <li><a href="{% url 'faq' %}">FAQ</a></li>
+        <li><a href="{% url 'home-loans' %}">Home Loans</a></li>
+        <li><a href="{% url 'index' %}">Index</a></li>
+        <li><a href="{% url 'meet-the-team' %}">Meet the Team</a></li>
+        <li><a href="{% url 'privacy-policy' %}">Privacy Policy</a></li>
+        <li><a href="{% url 'services' %}">Our Services</a></li>
+        <li><a href="{% url 'terms-of-service' %}">Terms of Use</a></li>
+    </ul>
+</section>
+
+<section id="section2">
+    <h2>User</h2>
+    <ul>
+        <li><a href="{% url 'register' %}">Register</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        <li><a href="{% url 'logout-success' %}">Logout Success</a></li>
+        <!-- <li><a href="{% url 'error' %}">Dashboard</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Delete Account</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Profile</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Reset Password</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Subscription Management</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Verified Email</a></li> -->
+    </ul>
+</section>
+
+<!-- <section id="section3">
+    <h2>Agent</h2>
+    <ul>
+        <li><a href="{% url 'add-agent' %}">Add Agent</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Agent Details</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">All Agents</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Analytics</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Contact</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Dashboard</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Edit Profile</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Reset Password</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Login</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">My Listings</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Profile</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Register</a></li> -->
+
+    </ul>
+</section>
+
+<section id="section4">
+    <h2>Listings</h2>
+    <ul>
+        <!-- <li><a href="{% url 'add-listing' %}">Add Listing</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Listing Detail</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Edit Listing</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Enquiry Form</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Featured Listings</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Listing Categories</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Listings Map View</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Manage Listings</a></li> -->
+        <!-- <li><a href="{% url 'error' %}">Saved Listings</a></li> -->
+        <li><a href="{% url 'search-listings' %}">Search Listings</a></li>  
+    </ul>
+</section>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

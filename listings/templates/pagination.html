@@ -1,0 +1,25 @@
+<!-- Pagination -->
+<div class="pagination">
+    <span class="step-links">
+        <!-- Back -->
+        {% if listings.has_previous %}
+            <!-- First -->
+            <a href="?page=1">&laquo;&nbsp;First</a>
+            <!-- Previous -->
+            <a href="?page={{ listings.previous_page_number }}">Back</a>
+        {% endif %}
+
+        <!-- Current Page -->
+        <span class="current">
+            Page {{ listings.number }}/{{ listings.paginator.num_pages }}
+        </span>
+
+        <!-- Forward -->
+        {% if listings.has_next %}
+            <!-- Next -->
+            <a href="?page={{ listings.next_page_number }}">Next</a>
+            <!-- Last -->
+            <a href="?page={{ listings.paginator.num_pages }}">Last&nbsp;&raquo;</a>
+        {% endif %}
+    </span>
+</div>

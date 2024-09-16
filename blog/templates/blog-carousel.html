@@ -1,0 +1,43 @@
+<!-- Section  -->
+
+{% if posts %}
+<section class="carousel-section">
+    <!-- Title -->
+    <h2>Articles</h2>
+    <!-- Carousel -->
+    <div class="carousel" id="blog-carousel">
+        {% for post in posts %}
+        <!-- Link -->
+        <a href="{% url 'blog-detail' slug=post.slug %}" class="link-block">
+            <!-- Card -->
+            <div class="blog-card">
+                <!-- Status Ribbon -->
+                {% if user.is_staff %}
+                <div class="ribbon ribbon-top-right">
+                    <span>{{ post.status }}</span>
+                </div>
+                {% endif %}
+                <!-- Image Container -->
+                <div class="blog-image-container">
+                    <!-- Image -->
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}" class="blog-image">
+                    <!-- TODO ADD PLACEHOLDER -->
+                    {% endif %}
+                </div>
+                <!-- Title -->
+                <h1 class="blog-title">{{ post.title }}</h1>
+                <!-- Excerpt Container -->
+                <div class="excerpt-container">
+                    <!-- Excerpt -->
+                    <p class="excerpt">{{ post.excerpt }}</p>
+                </div>
+            </div>
+        </a>
+        {% empty %}
+            <p>No Articles found.</p>
+        {% endfor %}
+    </div>
+</section>
+{% else%}
+{% endif %}

@@ -1,0 +1,128 @@
+<!--
+Home Page:
+
+The main landing page of the website, showcasing featured listings, search
+functionality, and highlights of key services or features offered by the
+website.
+-->
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block og-title %}Home{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <h1>Find property <span class="highlight-hover">for sale</span></h1>
+        <form class="search-form" method="GET" action="{% url 'search-listings' %}">
+            <select name="listing_type" id="listing_type">
+                {% for option in options.listing_type_options %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+            <select name="city" id="city">
+                <option value="">City</option>
+                {% for option in options.city_options %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+            <select name="province" id="province">
+                <option value="">Province</option>
+                {% for option in options.province_options %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+            <input type="number" name="price_max" id="price_max" placeholder="Max Price">
+            <input type="number" name="bedrooms" id="bedrooms" placeholder="Bedrooms"><br><br>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</section>
+
+<section class="carousel-section">
+    <h2>View Properties</h2>
+    <div class="carousel" id="listing-carousel">
+        {% for listing in listings %}
+        <a href="{% url 'listing-details' pk=listing.pk %}">
+            <div class="listing-card">
+                {% if listing.main_image %}
+                <img src="{{ listing.main_image.url }}">
+                {% endif %}
+                <div class="listing-details">
+                    <h3>R{{listing.price|floatformat|intcomma}}{% if listing.listing_type == "To Let" %} / month {% endif %}</h3>
+                    <p>{{listing}}</p>
+                    {% if listing.description|length > 50 %}
+                        <p>{{ listing.description|slice:":50" }}...</p>
+                    {% else %}
+                        <p>{{ listing.description }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </a>
+        {% empty %}
+            <p>No listings found.</p>
+        {% endfor %}
+        <!-- Add more listing cards here -->
+    </div>
+</section>
+
+<section class="carousel-section">
+    <h2>Our Services</h2>
+    <div class="carousel" id="service-carousel">
+        <div class="service-card">
+            <div class="service-icon">
+                <!-- Replace the URL with the path to your icon or illustration -->
+                <!-- <img src="static/media/Graphics/Duotone/Service-1.svg" alt="Search and View Properties"> -->
+                <!-- <img src="static/media/Graphics/Flat Geometric/Service-1.svg" alt="Search and View Properties"> -->
+                <img src="static/media/Graphics/Modern Flat/Service-1.svg" alt="Search and View Properties">
+            </div>
+            <div class="service-details">
+                <h3>Search and View Properties</h3>
+                <p>Easily explore available properties and view detailed information to find your ideal match.</p>
+            </div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">
+                <!-- Replace the URL with the path to your icon or illustration -->
+                <!-- <img src="static/media/Graphics/Duotone/Service-2.svg" alt="Send Enquiries to Agents"> -->
+                <!-- <img src="static/media/Graphics/Flat Geometric/Service-2.svg" alt="Send Enquiries to Agents"> -->
+                <img src="static/media/Graphics/Modern Flat/Service-2.svg" alt="Send Enquiries to Agents">
+            </div>
+            <div class="service-details">
+                <h3>Send Enquiries directly to agents</h3>
+                <p>Connect directly with agents to enquire about properties, streamlining the communication process for swift responses.</p>
+            </div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">
+                <!-- Replace the URL with the path to your icon or illustration -->
+                <!-- <img src="static/media/Graphics/Duotone/Service-3.svg" alt="Coming Soon"> -->
+                <!-- <img src="static/media/Graphics/Flat Geometric/Service-3.svg" alt="Coming Soon"> -->
+                <img src="static/media/Graphics/Modern Flat/Service-3.svg" alt="Coming Soon">
+            </div>
+            <div class="service-details">
+                <h3>More Exciting Features Coming Soon!</h3>
+                <p> Stay tuned for exciting updates and additional features to enhance your property search experience.</p>
+            </div>
+        </div>
+        <!-- Add more service cards here -->
+    </div>
+</section>
+
+    {% block blog-posts %}
+        {% include 'blog-carousel.html' %}
+    {% endblock %}
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

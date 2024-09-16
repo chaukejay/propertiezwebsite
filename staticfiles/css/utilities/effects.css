@@ -1,0 +1,40 @@
+/* 
+###########################
+#     HIGHLIGHT HOVER     #
+###########################
+*/
+/* Defines a hover effect that highlights text elements with a green background.
+    - Element: .highlight-hover
+        Applies styles to text elements with this class for hover interaction.
+
+    - ::before pseudo-element:
+        Extends behind the text with a green background, creating a highlight
+        effect.
+        - Background: Uses the variable --green for the highlight color.
+        - Positioning: Positioned absolutely relative to its parent
+            (.highlight-hover).
+        - Transformation: Initially hidden (scaleX(0)), then expands on hover 
+            (scaleX(1)).
+        - Transition: Smoothly animates the transformation over 0.5 seconds with 
+            an ease-in-out timing function.
+*/
+.highlight-hover {
+    position: relative;
+    text-decoration: none;
+}
+  
+.highlight-hover::before {
+    background: var(--green);
+    content: "";
+    inset: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease-in-out;
+    z-index: -1;
+}
+  
+.highlight-hover:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}

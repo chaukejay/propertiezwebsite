@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+
+{% block og-type %}article{% endblock %}
+{% block og-title %}{{ post.title }}{% endblock %}
+{% block og-image %}{{ post.image.url }}{% endblock %}
+{% block og-description %}{{ post.excerpt }}{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+    <article class="blog-post">
+        <!-- TITLE -->
+        <section class="hero article-hero" style="background-image: url('{{ post.image.url }}');">
+            <!-- Status Ribbon -->
+            {% if user.is_staff %}
+            <div class="ribbon ribbon-top-left">
+                <span>{{ post.status }}</span>
+            </div>
+            {% endif %}
+            <div class="overlay">
+                <h1>{{ post.title }}</h1>
+                <p>By {{ post.author.get_full_name }} posted {{ post.created_at|naturaltime }}</p>
+            </div>
+        </section>
+
+        <!-- CONTENT -->
+        <section class="content">
+            {{ post.content|safe }}
+        </section>
+
+         <!-- FOOTER -->
+        <section class="meta">
+            <!-- TAGS, AUTHOR BIO, ETC will go here  -->
+        </section>
+    </article>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}
