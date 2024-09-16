@@ -1,0 +1,45 @@
+
+.three-column-container {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+
+    height: auto;
+
+    border-radius: var(--border-radius);
+    padding: 20px;
+    width: 60%;
+    margin: 40px auto;
+    counter-reset: items;
+}
+
+.three-column-item {
+    width: 32%;
+
+    position: relative;
+    margin-bottom: 2%;
+    border-radius: var(--border-radius);
+    background-color: var(--green);
+    color: var(--white);
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.three-column-item::before {
+    counter-increment: items;
+    content: counter(items);
+}
+
+/* Re-order items into 3 rows */
+.three-column-container:nth-child(3n+1) {order: 1;}
+.three-column-container:nth-child(3n+2) {order: 2;}
+.three-column-container:nth-child(3n) {order: 3;}
+
+/* Force new coloumns */
+.three-column-container::before,
+.three-column-container::after {
+    content: "";
+    flex-basis: 100%;
+    width: 0;
+    order: 2;
+}

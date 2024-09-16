@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+Agent Details
+{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="agent-details">
+    <h1>Agent Details</h1>
+    <h2>{{agent.first_name}} {{agent.last_name}}</h2>
+    <p>Email: {{agent.email}}</p>
+    <p>Contact Number: {{agent.contact_number}}</p>
+    <p>FFC number: {{agent.ffc_id}}</p>
+    <p>Agency: {{agent.agency}}</p>
+    <p>Branch: {{agent.branch}}</p>
+</div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

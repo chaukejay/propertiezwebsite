@@ -1,0 +1,65 @@
+#ibuy-header {
+    margin-top: 0;
+    text-align: center;
+}
+
+.ibuy-container {
+    max-width: 91%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--light-gray);
+    box-shadow: 0 0 10px var(--transparent-black);
+    border-radius: var(--border-radius);
+    position: relative;
+    text-align: center;
+
+    & .ibuy-form {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        margin: 1em;
+
+        & p {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0;
+            margin-top: .5em;
+        }
+    
+        & label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--dark-green);
+            text-align: left;
+            width: 100%;
+            max-width: 600px;
+        }
+    
+        & input {
+            margin-bottom: 12px;
+            padding: 10px;
+            border: 1px;
+            border-radius: var(--border-radius);
+            font-size: 18px;
+            width: 100%;
+            max-width: 600px;
+        }
+    
+        & button {
+            transition-duration: .5s;
+            padding: 15px 20px;
+            background-color: var(--green);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 20px;
+            margin-top: .5em;
+        }
+    
+        & button:hover {
+            background-color: var(--dark-green);
+    
+        }
+    }
+}

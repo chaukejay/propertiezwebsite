@@ -1,0 +1,9 @@
+
+/* Green Border and Rounded Corners */
+.border-green-rounded {
+    border: 3px solid var(--green);
+    border-radius: var(--border-radius);
+    padding: 1em;
+    /* margin: 1em; */
+    margin-bottom: 1em;
+}

@@ -1,0 +1,78 @@
+<!--
+Registration Page:
+
+An HTML form page where new users can sign up for an account by providing their
+email address, password, and any other required information.
+
+This page may also include fields for additional user details, such as name,
+phone number, and address.
+-->
+
+{% extends 'base.html' %}
+
+{% block title %}
+Title
+{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="user-auth-container">
+        <h2>Sign Up</h2>
+        <form class="user-auth-form signup" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <p class="message info">{{field.help_text}}</p>
+                {% if form.errors %}
+                    {% for error_field, message in form.errors.items %}
+                        {% if field.name == error_field %}
+                        {{message}}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <div class="form-field">
+                    <label class="form-label" for="{{ field.auto_id }}">{{field.label}}</label>
+                    {{field}}
+                </div>
+            {% endfor %}
+            <!-- {{ form.as_p }} -->
+            <!-- <p class="message info">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+            <div class="form-field">
+                <label for="id_username" class="form-label">Username:</label>
+                <input type="text" name="username" maxlength="150"
+                    autocomplete="username" autocapitalize="none" required
+                    id="id_username" class="form-input">
+
+            </div>
+            <p class="message info">
+                Your password: <br>
+                * Can't be too similar to your other personal information. <br>
+                * Must contain at least 8 characters.<br>
+                * Can't be a commonly used password.<br>
+                * Can't be entirely numeric.
+            </p>
+            <div class="form-field">
+                <label for="id_password1" class="form-label">Password:</label>
+                <input type="password" name="password1" class="form-input"
+                    autocomplete="new-password" autocapitalize="none" required 
+                    id="id_password1">
+            </div>
+
+            <div class="form-field">
+                <label for="id_password2" class="form-label">Confirm Password:</label>
+                <input type="password" name="password2" class="form-input"
+                    autocomplete="new-password" autocapitalize="none" required 
+                    id="id_password2">
+            </div> -->
+            <button class="form-button" type="submit">Sign up</button>
+        </form> 
+        <p>Already have an account? <a href="{% url 'login' %}">Sign In</a></p>
+    </div>
+    
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

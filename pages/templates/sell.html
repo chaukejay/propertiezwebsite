@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Sell your property
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/components/divs.css' %}">
+{% endblock %}
+
+{% block og-title %}Sell your property{% endblock %}
+
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+<h1 class="dark-green-centered">Sell your property</h1>
+
+<div class="rounded-shadow-border cta">
+    <img class="rounded-shadow-border" src="{% static 'media/Images/agent.png' %}" >
+    <div>
+        <h3 class="dark-green-centered">Sell your property with an agent</h3>
+        <p>List your home with a Propertiez.co.za Partner Agent to get local expertise and potentially maximize your sale price.</p>
+        <p>Work with a real estate agent for selling support at every step, including prepping, listing, and marketing your home.</p>
+        <a href="{% url 'find-agent' %}">
+            <button>Find an Agent</button>
+        </a>
+    </div>
+</div>
+
+<div class="rounded-shadow-border cta row-reversed">
+    <img class="rounded-shadow-border" src="{% static 'media/Images/owner.png' %}" >
+    <div>
+        <h3 class="dark-green-centered">Sell your property yourself</h3>
+        <p>Deciding to sell your property yourself is referred to as for-sale-by-owner (FSBO).
+            The FSBO process is similar to selling with an agent, but without the support an agent can provide.</p>
+        <p>In this case, you're responsible for the home prep, marketing, showings, and negotiations.</p>
+        <a href="{% url 'fsbo_apply' %}" >
+            <button>Sell your property with us</button>
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

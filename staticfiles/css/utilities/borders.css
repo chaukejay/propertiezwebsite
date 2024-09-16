@@ -1,0 +1,20 @@
+/* This CSS file defines custom border styles using CSS variables. 
+    These variables, set on the :root pseudo-class, provide consistent and
+    adjustable border styles across the application. They control the width,
+    color, and style of borders, enhancing the visual presentation and layout of
+    elements.
+*/
+
+:root {
+    /* Defines the border radius for elements, giving a nice, rounded look.
+    - Value: 15px
+        Specifies a rounded corner radius of 15 pixels for elements using this
+        variable.
+    */
+    --border-radius: 15px;
+}
+
+.rounded-shadow-border {
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-default);
+}

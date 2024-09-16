@@ -1,0 +1,39 @@
+
+.service-card {
+    flex: 0 0 auto;
+    width: 300px; 
+    margin-right: 20px;
+    scroll-snap-align: start;
+    border-radius: 10px;
+    overflow: hidden;
+    border-style: ridge;
+    border-color: var(--green);
+    border-width: 7px;
+
+}
+
+.service-icon {
+    text-align: center;
+}
+
+.service-icon img {
+    width: 80%;
+}
+
+.service-details {
+    padding: 1px 1em;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.service-details h3 {
+    font-size: 1.2rem;
+    margin-block-start: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .service-card {
+        width: 70vw;
+        max-width: 300px;
+    }
+}

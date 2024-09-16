@@ -1,0 +1,29 @@
+# Virtual Environment
+venv/
+*.venv/
+
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Django migration files
+*.pyc
+*.pyo
+__pycache__/
+
+
+# Local settings
+settings/local.py
+*.env
+
+# Local db
+db.sqlite3
+
+# spikes
+spikes/
+
+.DS_Store
+staticfiles/.DS_Store
+
+# collected static files
+/static/

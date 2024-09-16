@@ -1,0 +1,83 @@
+/*
+  Defines a hero section with a background image and centered content.
+  - Container: .hero
+    Positions content relative to its size with negative margins to counteract 
+    padding from the main body containers.
+
+  - Background: .hero-bg
+    Provides a full-sized background image with reduced brightness.
+
+  - Content: .hero-content
+    Centers text content vertically and horizontally within the hero section.
+*/
+.hero {
+    margin: -1em -4em -2em;
+    position: relative;
+    height: 75vh;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/static/media/splash-2.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5);
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--white);
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Media query for smaller devices */
+@media screen and (max-width: 1000px) {
+    .hero {
+        margin: -1em -1em -2em;
+    }
+}
+
+/* Variants */
+.article-hero {
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin-bottom: 1em;
+
+    & .overlay {
+        background: var(--half-opaque-black);
+        padding: 20px;
+
+        & h1,
+        & p {
+            margin: 0;
+            padding: 0;
+            text-align: left;
+        }
+
+        & h1 {
+            font-size: 2em;
+        }
+    }
+}

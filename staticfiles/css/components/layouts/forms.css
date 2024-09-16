@@ -1,0 +1,132 @@
+form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    & .form-field {
+        display: inline-block;
+        padding: 3px;
+        border: 2px solid var(--green);
+        border-radius: var(--border-radius);
+        margin: .2em;
+
+        & .form-input {
+            width: 90%;
+            margin: .1em;
+            padding: .2em;
+            outline: none;
+            border: none;
+            display: block;
+            line-height: 1.2em;
+            font-size: 14pt;
+        }
+
+        & .form-label {
+            margin-left: .2em;
+            display: block;
+            font-size: 12px;
+            color: var(--green);
+        }
+    }
+
+    & .form-button {
+        flex-grow: 2;
+        min-width: 100px;
+        margin: .2em;
+        font-size: large;
+        height: 60px;
+        padding: 10px 20px;
+        background-color: var(--green);
+        color: var(--white);
+        border: none;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+}
+
+/* 
+###########################
+#     USER AUTH FORMS     #
+###########################
+*/
+
+.user-auth-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+
+    & h2 {
+        text-align: center;
+    }
+
+    & p {
+        text-align: center;
+    }
+}
+
+.user-auth-form {
+    .message,
+    .errorlist {
+        width: 50vw;
+        margin-top: 0;
+        box-sizing: border-box;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .message::before,
+    .errorlist li::before {
+        display: none;
+    }
+    .form-field,
+    .form-button {
+        box-sizing: border-box;
+        width: 50vw;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 1em;
+    }
+}
+
+
+/* 
+###########################
+#      SEARCH FORM        #
+###########################
+*/
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    max-width: 100%;
+    margin: 0;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--transparent-white);
+}
+
+.search-form select, .search-form input {
+    flex: 1;
+    padding: 10px;
+    margin: 5px;
+    border: 3px solid var(--green);
+    border-radius: 5px;
+}
+
+.search-form button {
+    flex: 2;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: var(--green);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-form button:hover {
+    background-color: var(--dark-green);
+}

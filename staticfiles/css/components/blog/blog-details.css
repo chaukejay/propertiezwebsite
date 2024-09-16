@@ -1,0 +1,25 @@
+.blog-post {
+    /* CONTENT */
+    & .content {
+        margin: 20px auto;
+        width: 70%;
+        /* text-align: center; */
+
+        & h1, & h2, & h3, & h4, & h5 {
+            text-align: center;
+        }
+    }
+
+    /* FOOTER */
+    & .meta {
+
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .blog-post {
+        & .content {
+            width: 90%;
+        }
+    }
+}

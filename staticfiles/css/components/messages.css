@@ -1,0 +1,129 @@
+/* Styles for a message display component with categorized tags.
+  - Container: .messages
+    Defines overall styling for the message list.
+
+  - Individual Messages: .message
+    Defines styling for each message item.
+
+  - Message Categories:
+    Each category (.debug, .info, .success, .warning, .error) has specific
+    styles:
+    - Color: Sets background, border, and text colour using respective color
+      variables.
+    - ::before Pseudo-element: Adds category label before each message.
+
+  - Message Tag Display: .message::before
+    Styles for displaying and formatting message tags.
+
+  - Error List (.errorlist)
+    Styles for a list specifically for error messages.
+*/
+
+.messages {
+    font-family: var(--font-family);
+    list-style-type: none; /* Remove default list icons */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+& .message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius);
+    border: 2px solid;
+    font-weight: bold;
+    display: flex; /* Use flexbox for tag and message alignment */
+    align-items: center;
+}
+
+& .debug {
+    background-color: var(--debug-purple-bg);
+    border-color: var(--debug-purple);
+    color: var(--debug-purple);
+}
+
+& .debug::before {
+    content: "debug";
+}
+
+& .info {
+    background-color: var(--info-blue-bg);
+    border-color: var(--info-blue);
+    color: var(--info-blue);
+}
+
+& .info::before {
+    content: "info";
+}
+
+& .success {
+    background-color: var(--success-green-bg);
+    border-color: var(--success-green);
+    color: var(--success-green);
+}
+
+& .success::before {
+    content: "success";
+}
+
+& .warning {
+    background-color: var(--warning-orange-bg);
+    border-color: var(--warning-orange);
+    color: var(--warning-orange);
+}
+
+& .warning::before {
+    content: "warning";
+}
+
+& .error {
+    background-color: var(--error-red-bg);
+    border-color: var(--error-red);
+    color: var(--error-red);
+}
+
+& .error::before {
+    content: "error";
+}
+
+/* Message tag display */
+.message::before {
+    text-transform: capitalize;
+    margin-right: 10px;
+    padding: 2px 5px;
+    border-radius: 10px;
+    background-color: inherit;
+    color: inherit;
+    border: 2px solid currentColor;
+}
+
+/* Error list */
+.errorlist {
+    list-style-type: none; /* Remove default list icons */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    & li {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: var(--border-radius);
+        border: 1px solid;
+        font-weight: bold;
+        display: flex; /* Use flexbox for tag and message alignment */
+        align-items: center;
+
+        background-color: var(--error-red-bg);
+        border-color: var(--error-red);
+        color: var(--error-red);
+    }
+
+    & li::before {
+        content: "Error";
+        text-transform: capitalize;
+        margin-right: 10px;
+        padding: 2px 5px;
+        border-radius: 10px;
+        background-color: inherit;
+        color: inherit;
+        border: 1px solid currentColor;
+    }
+}

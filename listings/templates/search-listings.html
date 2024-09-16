@@ -1,0 +1,221 @@
+<!--
+Listing Search Results Page:
+
+Showing search results based on user-defined criteria, such as location, price
+range, property type, number of bedrooms/bathrooms, and other filters.
+
+This page would display a list of matching listings with brief summaries and
+links to the detailed listing pages.
+-->
+
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}
+Search Properties
+{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+<h2>Search Properties</h2>
+
+<!-- Search Form -->
+<form class="search-listings-form" method="GET" action="{% url 'search-listings' %}">
+    <div class="main-filters">
+        <div class="form-field">
+            <label for="listing_type" class="form-label">Status:</label>
+            <select name="listing_type" class="form-input" id="listing_type">
+                <option value="">Select</option>
+                {% for option in options.listing_type_options %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-field">
+            <label for="city" class="form-label">City:</label>
+            <select name="city" class="form-input" id="city">
+                <option value="">Select</option>
+                {% for option in options.city_options %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-field">
+            <label for="province" class="form-label">Province:</label>
+                <select name="province" class="form-input" id="province">
+                    <option value="">Select</option>
+                    {% for option in options.province_options %}
+                        <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+        </div>
+        <button class="form-button" type="submit">Apply Filters</button>
+    </div>
+    <details>
+        <summary>More Filters</summary>
+        <div class="more-filters">
+            <div class="form-field">
+                <label for="suburb"  class="form-label">Suburb:</label>
+                <select name="suburb" class="form-input" id="suburb">
+                    <option value="">Select</option>
+                    {% for option in options.suburb_options %}
+                        <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="area"  class="form-label">Area:</label>
+                <select name="area" class="form-input" id="area">
+                    <option value="">Select</option>
+                    {% for option in options.area_options %}
+                        <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="bedrooms" class="form-label">Minimum Bedrooms:</label>
+                <input class="form-input" type="number" name="bedrooms" id="bedrooms" min="0">
+            </div>
+            <div class="form-field">
+                <label for="bathrooms" class="form-label">Minimum Bathrooms:</label>
+                <input class="form-input" type="number" name="bathrooms" id="bathrooms" min="0">
+            </div>
+            <div class="form-field">
+                <label for="price_min" class="form-label">Minimum Price:</label>
+                <input class="form-input" type="number" name="price_min" id="price_min" min="0">
+            </div>
+            <div class="form-field">
+                <label for="price_max" class="form-label">Maximum Price:</label>
+                <input class="form-input" type="number" name="price_max" id="price_max" min="0">
+            </div>
+        </div>
+        <div class="form-field">
+            <label class="form-label">Property Types:</label>
+            <div class="checkboxes">
+                {% for option in options.property_type_options %}
+                    <div class="checkbox">
+                        <input type="checkbox" name="property_type" value="{{ option }}">
+                        <label for="property_type" class="form-label">&nbsp;{{ option }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </details>
+    <br>
+</form>
+<!-- Pagination -->
+{% block pagination-top %}
+    {% include 'pagination.html' %}
+{% endblock %}
+
+<!-- Listings -->
+<div class="search-listings-results">
+    <!-- No. Listings -->
+    <p class="num-listings">{{listings.paginator.count}} Properties Found</p>
+    {% for listing in listings %}
+    <!-- Link -->
+    <a href="{% url 'listing-details' pk=listing.pk %}" class="listing-link">
+        <!-- Listing -->
+        <div class="listing">
+                <!-- Agency Image -->
+                {% if listing.agent.agency.image %}
+                    <img class="agency-image" src="{{ listing.agent.agency.image.url }}" alt="Agency Image">
+                {% endif %}
+            <!-- Images -->
+            <div class="listing-images">
+                <!-- Main Image -->
+                {% if listing.main_image %}
+                    <img class="listing-main-image" src="{{ listing.main_image.url }}" alt="Main Image">
+                    <!-- TODO ADD PLACEHOLDER IF NO IMAGE -->
+                {% endif %}
+            </div>
+            <!-- Details -->
+            <div class="listing-info">
+                <!-- Price -->
+                <h2 class="listing-price">
+                    R{{ listing.price|floatformat|intcomma }} {% if listing.listing_type == "To Let" %} / month {% endif %}
+                </h2>
+
+                <!-- Title -->
+                <h3 class="listing-title">
+                    <!-- No. Bedroom -->
+                    {% if listing.bedrooms %}
+                        {{listing.bedrooms|floatformat}} Bedroom
+                    {% endif%}
+
+                    <!-- Property Type -->
+                    {{listing.property_type}}
+
+                    <!-- Listing Type -->
+                    {{listing.listing_type}}
+
+                    <!-- Location (most specific) -->
+                        <!-- Suburb -->
+                    {% if listing.suburb and listing.suburb != "" %} 
+                        in {{ listing.suburb}}
+                        <!-- Area -->
+                    {% elif listing.area and listing.area != "" %}
+                        in {{ listing.area }}
+                        <!-- City -->
+                    {% elif listing.city and listing.city != "" %}
+                        in {{ listing.city }}
+                    {% endif %}
+                </h3>
+
+                <!-- Location -->
+                <p class="listing-location">
+                    <!-- Surburb -->
+                    {% if listing.suburb and listing.suburb != "" %} 
+                        {{listing.suburb}},
+                    {% endif %}
+                    <!-- Area -->
+                    {% if listing.area and listing.area != "" %}
+                        {{listing.area}},
+                    {% endif %}
+                    <!-- City -->
+                    {% if listing.city and listing.city != "" %}
+                        {{listing.city}},
+                    {% endif %}
+                    <!-- Province -->
+                    {{listing.province}}
+                </p>
+
+                <!-- Rooms -->
+                <p class="listing-rooms">
+                    <!-- Bedrooms -->
+                    {% if listing.bedrooms %}
+                        {{listing.bedrooms|floatformat}} Beds
+                    {% endif%}
+                    <!-- Bathrooms -->
+                    {% if listing.bathrooms %}
+                        {{listing.bathrooms|floatformat}} Baths
+                    {% endif%}
+                </p>
+
+                <!-- Description -->
+                    {% if listing.description|length > 200 %}
+                        <p class="listing-description">{{ listing.description|slice:":200" }}...</p>
+                    {% else %}
+                        <p class="listing-description">{{ listing.description }}</p>
+                    {% endif %}
+            </div>
+        </div>
+    </a>
+    {% empty %}
+        <p class="no-listings">No properties found.</p>
+    {% endfor %}
+</div>
+
+<!-- Pagination -->
+{% block pagination-bottom %}
+    {% include 'pagination.html' %}
+{% endblock %}
+
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

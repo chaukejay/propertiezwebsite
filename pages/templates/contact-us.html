@@ -1,0 +1,119 @@
+<!--
+Contact Us Page:
+
+Offering various methods for users to get in touch with the website's
+administrators or support team.
+
+This page could include a contact form, email addresses, phone numbers, office
+locations, and social media links.
+-->
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Contact Us
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/components/pages/contact-us.css' %}">
+{% endblock %}
+
+{% block og-title %}Contact Us{% endblock %}
+
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+
+<h1>Get in Touch</h1>
+
+<p>Want to list your property, have a question, feedback, or just want to say hello? We'd love to hear from you! Feel free to reach out to us using the contact information below, and our team will get back to you as soon as possible.</p>
+
+<!-- Contact Form -->
+{% block contact-form %}
+    {% include 'contact-form.html' %}
+{% endblock %}
+
+<!-- Contact Info -->
+<div class="contact-info">
+    <h2>Contact Information</h2>
+    <!-- Email -->
+    <p>
+        <i class="fa fa-envelope fa-lg"></i>&nbsp;
+        <span class="sr-only">Email Address</span>
+        <a href="mailto:care@propertiez.co.za">care@propertiez.co.za</a>
+    </p>
+    <!-- Phone -->
+    <p>
+        <i class="fa fa-phone fa-lg"></i>&nbsp;
+        <span class="sr-only">Phone Number</span>
+        +27 87 822 2912
+    </p>
+    <!-- Whatsapp -->
+    <p>
+        <i class="fab fa-whatsapp fa-lg"></i>&nbsp;
+        <span class="sr-only">Whatsapp</span>
+        <a href="https://wa.me/27878222912" target="_blank">Start a chat on Whatsapp</a>
+    </p>
+    <!-- Address -->
+    <p>
+        <i class="fa fa-map-marker fa-lg"></i>&nbsp;
+        <span class="sr-only">Physical Address</span>
+        547 Voortrekker Road, Maitland, Cape Town, South Africa
+    </p>
+</div>
+
+<!-- Social Media -->
+<div class="social-media">
+    <h2>Social Media</h2>
+    <p>
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/profile.php?id=61556429130493&mibextid=ZbWKwL" target="_blank" class="no-decoration">
+            <i class="fab fa-facebook fa-2x"></i>
+            <span class="sr-only">Facebook</span>
+        </a>&nbsp;
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/_propertiez.co.za_worldwide?igsh=MXJhOGZucm11emJraQ==" target="_blank" class="no-decoration">
+            <i class="fab fa-instagram fa-2x"></i>
+            <span class="sr-only">Instagram</span>
+        </a>&nbsp;
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/company/propertiez-co-za/" target="_blank" class="no-decoration">
+            <i class="fab fa-linkedin fa-2x"></i>
+            <span class="sr-only">LinkedIn</span>
+        </a>&nbsp;
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@propertiez.co.za?_t=8lSqhgPp9QT&_r=1" target="_blank" class="no-decoration">
+            <i class="fab fa-tiktok fa-2x"></i>
+            <span class="sr-only">TikTok</span>
+        </a>&nbsp;
+        <!-- Youtube -->
+        <a href="https://www.youtube.com/@Propertiez.co_za" target="_blank" class="no-decoration">
+            <i class="fab fa-youtube fa-2x"></i>
+            <span class="sr-only">Youtube</span>
+        </a>
+    </p>
+
+</div>
+
+<div class="business-hours">
+    <h2>Business Hours</h2>
+    <p>Monday - Friday: 9AM - 5PM</p>
+</div>
+
+<h2>We're Here to Help</h2>
+
+<p>At Propertiez.co.za, customer satisfaction is our top priority. Whether you're a prospective buyer, seller, renter, or industry partner, we're committed to providing exceptional service and support every step of the way.</p>
+<p>Don't hesitate to get in touch – we're here to help you achieve your property goals!</p>
+
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

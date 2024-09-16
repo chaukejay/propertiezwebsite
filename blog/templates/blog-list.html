@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}
+    Blog Posts
+{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+    <!-- Page Title -->
+    <h1>Blog Posts</h1>
+
+    <!-- Blog List -->
+    <div class="blog-list">
+        {% for post in posts %}
+        <!-- Link -->
+        <a href="{% url 'blog-detail' slug=post.slug %}" class="link-block">
+            <!-- Card -->
+            <div class="blog-card">
+                <!-- Image Container -->
+                <div class="blog-image-container">
+                    <!-- Image -->
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}" class="blog-image">
+                    <!-- TODO ADD PLACEHOLDER -->
+                    {% endif %}
+                </div>
+                <div class="blog-details-container" >
+                    <!-- Title -->
+                    <h3 class="blog-title">{{ post.title }}</h1>
+                    <p class="blog-subtitle">By {{ post.author.get_full_name }} posted {{ post.created_at|naturaltime }}</p>
+                    <!-- Excerpt -->
+                    <p class="excerpt">{{ post.excerpt }}</p>
+                    {% if user.is_staff %}
+                    <p>Status: {{ post.status }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </a>
+        {% empty %}
+            <p>No Posts found.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

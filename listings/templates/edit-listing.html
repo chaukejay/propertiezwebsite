@@ -1,0 +1,42 @@
+<!--
+Listing Edit Page:
+
+Similar to the creation page but for editing existing property listings.
+
+This page would allow authorized users to modify the details of a listing,
+including updating images, changing price, editing description, and adjusting
+other attributes.
+-->
+
+{% extends 'base.html' %}
+
+{% block title %}
+Title
+{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+<h2>Edit Listing</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <label for="image_formset">Existing Photos:</label>
+    {{ image_formset.management_form }}
+    {% for image_form in image_formset %}
+        {{ image_form.as_p }}
+    {% endfor %}
+
+    <label for="listing-image">Upload Photos:</label>
+    <input type="file" id="listing-image" name="listing-image" accept="image/*" multiple>
+    <p></p>
+    <button type="submit">Save Changes</button>
+</form>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

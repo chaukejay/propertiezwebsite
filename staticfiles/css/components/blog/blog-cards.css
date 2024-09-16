@@ -1,0 +1,106 @@
+
+/* Carousel */
+#blog-carousel { 
+    overflow-y: hidden;
+    
+        /* Link */
+        & .link-block {
+            width: 300px;
+            height: 400px;
+            position: relative;
+    
+            margin: 20px 10px;
+            /* margin-right: 20px; */
+            box-sizing: border-box;
+    
+            box-shadow: var(--box-shadow-default);
+            transition: var(--transition-smooth);
+            border-radius: var(--border-radius);
+    
+            text-align: center;
+            text-decoration: none;
+    
+            /* Card */
+            & .blog-card {
+                width: 300px;
+    
+                /* Image Container */
+                & .blog-image-container {
+                    width: 100%;
+                    height: 250px;
+                    position: relative;
+                    transition: var(--transition-smooth);
+                    z-index: 2;
+    
+                    /* Image */
+                    & .blog-image {
+                        width: 100%;
+                        height: 100%;
+                        border-top-left-radius: var(--border-radius);
+                        border-top-right-radius: var(--border-radius);
+                        object-fit: cover;
+                    }
+                }
+    
+                /* Title */
+                & .blog-title {
+                    position: absolute;
+                    top: 250px;
+                    transition: var(--transition-smooth);
+                    z-index: 1;
+                    font-weight: 100;
+                    color: var(--dark-green);
+                    font-size: 1.4em;
+                    padding: 0 10px;
+                    margin: 0.5em 0;
+                    opacity: 1;
+                }
+    
+                /* Excerpt Container */
+                & .excerpt-container {
+                    position: relative;
+                    padding: 20px;
+                    transition: var(--transition-smooth);
+                    opacity: 0;
+                    overflow: hidden;
+    
+                    /* Excerpt */
+                    & .excerpt {
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
+        /* Link Hover */
+        & .link-block:hover {
+            box-shadow: var(--box-shadow-hover);
+            
+            /* Image Container */
+            & .blog-image-container {
+                height: 200px;
+            }
+    
+            /* Title */
+            & .blog-title {
+                top: 150px;
+                opacity: 0;
+            }
+            
+            /* Excerpt Container */
+            & .excerpt-container {
+                opacity: 1;
+            }
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        #blog-carousel {
+            & .link-block {
+                .blog-card {
+                    width: 70vw;
+                    max-width: 300px;
+                }
+            }
+        }
+    }
+    

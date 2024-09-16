@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+iBuy
+{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+<h1 id="ibuy-header">iBuy - Get an Instant Offer for Your Property</h1>
+<p id="ibuy-copy">
+
+</p>
+<div class="ibuy-container">
+    <form class="ibuy-form" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+    
+        <label for="ibuy-image">Upload Photos:</label>
+        <input type="file" id="ibuy-image" name="ibuy-image" accept="image/*" multiple>
+        <button type="submit">Get Instant Offer</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

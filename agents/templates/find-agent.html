@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Find an Agent
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/components/agents/agent-cards.css'%}">
+<link rel="stylesheet" href="{% static 'css/components/agents/find-agent.css'%}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+{% endblock %}
+
+{% block og-title %}Find an Agent{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>Find a Real Estate Agent</h1>
+
+
+{{ agent }}
+
+<div class="agents">
+    {% for agent in agents %}
+        <div class="agent-card">
+            {% if agent.image %}
+            <img src="{{ agent.image.url }}" alt="{{ agent }}" class="agent-image">
+            {% endif %}
+            <div class="agent-info">
+                <h3 class="agent-name">{{ agent }}</h3>
+                <p class="agent-tags">{{ agent.tags.all|join:", " }}</p>
+                <p class="agent-number">
+                    <i class="fa fa-phone fa-lg"></i>
+                    <span class="sr-only">Phone Number</span>
+                    <a href="tel:{{ agent.contact_number }}"> {{ agent.contact_number }}</a>
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}
