@@ -1,9 +1,9 @@
-name: Deploy to DirectAdmin
+name: Deploy Application
 
 on:
   push:
     branches:
-      - rel
+      - rel  # Replace with your branch name
 
 jobs:
   deploy:
@@ -25,9 +25,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Deploy to DirectAdmin
+      - name: Deploy to Server
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIV_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           echo "$SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
@@ -36,5 +36,5 @@ jobs:
             cd /path/to/deployment/directory
             source venv/bin/activate
             pip install -r requirements.txt
-            sudo systemctl restart apache2  # Or `sudo systemctl restart nginx` for Nginx
+            sudo systemctl restart apache2  # Or `sudo systemctl restart nginx` if using Nginx
           EOF
