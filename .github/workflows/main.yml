@@ -3,7 +3,7 @@ name: Deploy Application
 on:
   push:
     branches:
-      - rel  # Replace with your branch name if different
+      - rel
 
 jobs:
   deploy:
@@ -31,7 +31,11 @@ jobs:
         run: |
           echo "$SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
+          echo "Testing SSH connection..."
+          ssh -i private_key -o StrictHostKeyChecking=no propert4@198.251.84.236 "echo SSH connection successful"
+          echo "Running rsync..."
           rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" ./ propert4@198.251.84.236:/home/propert4/public_html/
+          echo "Deploying application..."
           ssh -i private_key -o StrictHostKeyChecking=no propert4@198.251.84.236 << 'EOF'
             cd /home/propert4/public_html/
             source venv/bin/activate
