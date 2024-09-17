@@ -1,44 +1,25 @@
-name: Deploy Application
+name: Deploy Website
 
 on:
   push:
     branches:
-      - rel
+      - rel  # Triggers the action on push to the 'rel' branch
 
 jobs:
-  deploy:
+  ftp-deploy:
+    name: FTP Deploy to DirectAdmin
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          ref: rel
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Deploy to Server
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |
-          echo "$SSH_PRIVATE_KEY" > private_key
-          chmod 600 private_key
-          echo "Testing SSH connection..."
-          ssh -i private_key -o StrictHostKeyChecking=no propert4@198.251.84.236 "echo SSH connection successful"
-          echo "Running rsync..."
-          rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" ./ propert4@198.251.84.236:/home/propert4/public_html/
-          echo "Deploying application..."
-          ssh -i private_key -o StrictHostKeyChecking=no propert4@198.251.84.236 << 'EOF'
-            cd /home/propert4/public_html/
-            source venv/bin/activate
-            pip install -r requirements.txt
-            sudo systemctl restart apache2  # Adjust based on your web server
-          EOF
+    - name: Deploy website via FTP
+      uses: SamKirkland/FTP-Deploy-Action@4.2.0
+      with:
+        server: ftp://d7.asurahosting.com  # Your FTP host (Asura Hosting)
+        username: ${{ secrets.FTP_USERNAME }}  # GitHub secret for your DirectAdmin username
+        password: ${{ secrets.FTP_PASSWORD }}  # GitHub secret for your DirectAdmin password
+        port: 21  # FTP port
+        local-dir: ./  # Directory in your GitHub repo with the website files
+        server-dir: /home/propert4/public_html/  # Directory on the DirectAdmin server where your site is hosted
