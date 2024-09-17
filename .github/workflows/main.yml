@@ -23,4 +23,4 @@ jobs:
         port: 21  # FTP port (if it supports FTP)
         protocol: ftp  # Specify the FTP protocol explicitly
         local-dir: ./  # Directory in your GitHub repo with the website files
-        server-dir: /home/propert4/public_html/  # Directory on the DirectAdmin server where your site is hosted
+        server-dir: /home/propert4/demo_html/  # Directory on the DirectAdmin server where your site is hosted
