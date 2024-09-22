@@ -3,7 +3,8 @@ name: Deploy Website
 on:
   push:
     branches:
-      - rel  # Triggers the action on push to the 'rel' branch
+      - rel
+    - main   # Triggers the action on push to the 'rel' branch
 
 jobs:
   ftp-deploy:
