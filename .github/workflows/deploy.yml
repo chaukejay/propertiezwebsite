@@ -1,4 +1,4 @@
-name: Deploy to DirectAdmin
+name: Deploy Application
 
 on:
   push:
@@ -25,16 +25,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Deploy to DirectAdmin
+      - name: Deploy to Server
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           echo "$SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
-          rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" ./ deployer@propertiez.co.za:/path/to/deployment/directory/
-          ssh -i private_key -o StrictHostKeyChecking=no deployer@propertiez.co.za << 'EOF'
-            cd /path/to/deployment/directory
+          echo "Testing SSH connection..."
+          ssh -i private_key -o StrictHostKeyChecking=no propert4@198.251.84.236 "echo SSH connection successful"
+          echo "Running rsync..."
+          rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" ./ propert4@198.251.84.236:/home/propert4/public_html/
+          echo "Deploying application..."
+          ssh -i private_key -o StrictHostKeyChecking=no propert4@198.251.84.236 << 'EOF'
+            cd /home/propert4/public_html/
             source venv/bin/activate
             pip install -r requirements.txt
-            sudo systemctl restart apache2  # Or `sudo systemctl restart nginx` for Nginx
+            sudo systemctl restart apache2  # Adjust based on your web server
           EOF

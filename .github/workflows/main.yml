@@ -1,0 +1,26 @@
+name: Deploy Website
+
+on:
+  push:
+    branches:
+      - rel    # Triggers the action on push to the 'rel' branch
+
+jobs:
+  ftp-deploy:
+    name: FTP Deploy to DirectAdmin
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Deploy website via FTP
+      uses: SamKirkland/FTP-Deploy-Action@4.2.0
+      with:
+        server: d7.asurahosting.com  # Corrected FTP host (removed ftp://)
+        username: ${{ secrets.FTP_USERNAME }}  # GitHub secret for your DirectAdmin username
+        password: ${{ secrets.FTP_PASSWORD }}  # GitHub secret for your DirectAdmin password
+        port: 21  # FTP port (if it supports FTP)
+        protocol: ftp  # Specify the FTP protocol explicitly
+        local-dir: ./  # Directory in your GitHub repo with the website files
+        server-dir: /home/propert4/public_html/  # Directory on the DirectAdmin server where your site is hosted
